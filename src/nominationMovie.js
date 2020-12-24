@@ -2,7 +2,7 @@ import React from "react";
 
 import { Row, Button, Col } from "react-bootstrap";
 
-import "./app.css";
+import "./App.css";
 
 function nominationMovie(props) {
   return (
