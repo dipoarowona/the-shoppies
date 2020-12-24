@@ -47,7 +47,7 @@ body {
   border-radius: 19px;
 }
 
-#search-button {
+.search-button {
   height: 50px;
   margin-left: 1%;
   background: #ffffff;
@@ -56,9 +56,6 @@ body {
   border: 1px solid #ced4d9;
 }
 
-#search-button:hover {
-  background: #ced4d9;
-}
 .results-card {
   width: 100%;
   max-height: 328px;
@@ -75,6 +72,8 @@ body {
   max-height: 328px;
   padding-bottom: 8%;
   overflow-y: scroll;
+
+  overflow-x: hidden;
   background: #f2f2f2;
   box-shadow: 0px 4px 4px rgba(103, 103, 103, 0.25);
   border-radius: 19px;

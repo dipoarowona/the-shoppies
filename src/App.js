@@ -73,7 +73,7 @@ function App() {
                       setSearchTerm(e.target.value);
                     }}
                   />
-                  <Button onClick={updateSearch} id="search-button">
+                  <Button onClick={updateSearch} className="search-button">
                     Search
                   </Button>
                 </Row>

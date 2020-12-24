@@ -6,7 +6,7 @@ import "./app.css";
 
 function nominationMovie(props) {
   return (
-    <div style={{ width: "90%" }}>
+    <div style={{ width: "90%", margin: "auto", paddingBottom: "1%" }}>
       <Row style={{ margin: "auto" }}>
         <Col>
           <p style={{ textAlign: "left" }}>
@@ -16,7 +16,7 @@ function nominationMovie(props) {
         <Col md="auto">
           <Button
             onClick={() => props.moveToResults(props.movie.imdbID)}
-            style={{ margin: "auto" }}
+            className="nominate-remove-btn"
           >
             Remove
           </Button>
