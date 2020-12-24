@@ -5,6 +5,7 @@ import { Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
 import ResultMovie from "./resultMovie";
 import NominationMovie from "./nominationMovie";
 
+import "./app.css";
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState({ error: null, data: null });
