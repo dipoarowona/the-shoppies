@@ -68,23 +68,31 @@ function App() {
               <Form style={{ marginTop: "3%", marginLeft: "5%" }}>
                 <h3 className="search-title">Search</h3>
                 <Row>
-                  <Form.Control
-                    type="text"
-                    placeholder="Search Movie"
-                    id="search-bar"
-                    onChange={(e) => {
-                      setSearchTerm(e.target.value);
-                    }}
-                  />
-                  <Button onClick={updateSearch} className="search-button">
-                    Search
-                  </Button>
+                  <Col style={{ paddingLeft: "0px" }} md={10} sm={11}>
+                    <Form.Control
+                      type="text"
+                      placeholder="Search Movie"
+                      id="search-bar"
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                      }}
+                    />
+                  </Col>
+                  <Col style={{ paddingLeft: "0px" }}>
+                    <Button onClick={updateSearch} className="search-button">
+                      Search
+                    </Button>
+                  </Col>
                 </Row>
               </Form>
             </Card>
           </Row>
           <Row style={{ marginTop: "3%" }}>
-            <Col md sm={12} style={{ paddingLeft: "0.25%" }}>
+            <Col
+              md
+              sm={12}
+              style={{ paddingLeft: "0.5%", paddingRight: "0.5%" }}
+            >
               <Card className="results-card">
                 <Row>
                   <h3 className="results-nominations-heading">
@@ -119,7 +127,11 @@ function App() {
                 </Row>
               </Card>
             </Col>
-            <Col md sm={12} style={{ paddingRight: ".25%" }}>
+            <Col
+              md
+              sm={12}
+              style={{ paddingLeft: "0.5%", paddingRight: "0.5%" }}
+            >
               <Card className="nominations-card">
                 <Row>
                   <h3 className="results-nominations-heading">Nominations</h3>
