@@ -12,7 +12,9 @@ function App() {
   const [nominations, setNominations] = useState([]);
 
   const updateSearch = () => {
-    fetch(`http://www.omdbapi.com/?s=${searchTerm}&i=tt3896198&apikey=914d4fd7`)
+    fetch(
+      `https://www.omdbapi.com/?s=${searchTerm}&i=tt3896198&apikey=914d4fd7`
+    )
       .then((response) => response.json())
       .then((data) => {
         if (data.Error) {

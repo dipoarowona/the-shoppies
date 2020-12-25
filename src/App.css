@@ -60,7 +60,7 @@ body {
   width: 100%;
   max-height: 328px;
   padding-bottom: 8%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   background: #f2f2f2;
   box-shadow: 0px 4px 4px rgba(103, 103, 103, 0.25);
@@ -71,7 +71,7 @@ body {
   width: 100%;
   max-height: 328px;
   padding-bottom: 8%;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   overflow-x: hidden;
   background: #f2f2f2;
@@ -96,4 +96,16 @@ body {
   border-radius: 19px;
   color: black;
   border: 1px solid #ced4d9;
+}
+
+div.main-card ::-webkit-scrollbar {
+  background: transparent;
+  width: 18px;
+}
+div.main-card ::-webkit-scrollbar-thumb {
+  background-color: #868686;
+  border-radius: 20px;
+}
+div.main-card ::-webkit-scrollbar-track {
+  border-radius: 20px;
 }
