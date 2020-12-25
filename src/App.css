@@ -4,8 +4,8 @@ body {
   background: white;
 }
 .main-card {
-  width: 1040px;
-  height: 687px;
+  max-width: 1040px;
+  min-height: 687px;
   margin: auto;
   margin-top: 6%;
   background: rgba(196, 196, 196, 0.18);
@@ -108,4 +108,16 @@ div.main-card ::-webkit-scrollbar-thumb {
 }
 div.main-card ::-webkit-scrollbar-track {
   border-radius: 20px;
+}
+
+#alert {
+  animation: createBox 1s;
+}
+@keyframes createBox {
+  0% {
+    margin-top: -50px;
+  }
+  100% {
+    margin-top: 0px;
+  }
 }

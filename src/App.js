@@ -53,7 +53,9 @@ function App() {
             marginTop: "1%",
           }}
         >
-          <Alert variant="danger">You Have 5 or More Nominations</Alert>
+          <Alert id="alert" variant="danger">
+            You Have 5 or More Nominations
+          </Alert>
         </div>
       ) : (
         <></>
@@ -65,7 +67,7 @@ function App() {
             <Card className="search-card">
               <Form style={{ marginTop: "3%", marginLeft: "5%" }}>
                 <h3 className="search-title">Search</h3>
-                <Row style={{}}>
+                <Row>
                   <Form.Control
                     type="text"
                     placeholder="Search Movie"
@@ -82,7 +84,7 @@ function App() {
             </Card>
           </Row>
           <Row style={{ marginTop: "3%" }}>
-            <Col style={{ paddingLeft: "0.25%" }}>
+            <Col md sm={12} style={{ paddingLeft: "0.25%" }}>
               <Card className="results-card">
                 <Row>
                   <h3 className="results-nominations-heading">
@@ -117,7 +119,7 @@ function App() {
                 </Row>
               </Card>
             </Col>
-            <Col style={{ paddingRight: ".25%" }}>
+            <Col md sm={12} style={{ paddingRight: ".25%" }}>
               <Card className="nominations-card">
                 <Row>
                   <h3 className="results-nominations-heading">Nominations</h3>
