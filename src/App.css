@@ -1,15 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 
 body {
-  background: white;
+  background-image: url(./bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .main-card {
   max-width: 1040px;
   min-height: 687px;
   margin: auto;
   margin-top: 6%;
-  background: white;
+  background: rgba(196, 196, 196, 0.18);
   border-radius: 19px;
+  margin-bottom: 10%;
 }
 
 .title {
