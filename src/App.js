@@ -48,7 +48,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (ls.get("nominations") !== []) {
+    if (ls.get("nominations") !== [] && ls.get("nominations") !== null) {
       setNominations(ls.get("nominations"));
     }
   }, []);
