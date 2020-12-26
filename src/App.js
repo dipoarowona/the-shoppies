@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import ls from "local-storage";
 
 import { Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
 
@@ -11,7 +13,8 @@ function App() {
   const [results, setResults] = useState({ error: null, data: null });
   const [nominations, setNominations] = useState([]);
 
-  const updateSearch = () => {
+  const updateSearch = (event) => {
+    event.preventDefault();
     fetch(
       `https://www.omdbapi.com/?s=${searchTerm}&i=tt3896198&apikey=914d4fd7`
     )
@@ -28,6 +31,7 @@ function App() {
   const moveToNomination = (id) => {
     const newNomination = results.data.find((movie) => movie.imdbID === id);
     setNominations(nominations.concat(newNomination));
+    ls.set("nominations", nominations.concat(newNomination));
   };
 
   const moveToResults = (id) => {
@@ -35,12 +39,19 @@ function App() {
       return movie.imdbID !== id;
     });
     setNominations(updatedNominations);
+    ls.set("nominations", updatedNominations);
   };
 
   const isDisabled = (id) => {
     const movie = nominations.find((nomination) => nomination.imdbID === id);
     return movie ? true : false;
   };
+
+  useEffect(() => {
+    if (ls.get("nominations") !== []) {
+      setNominations(ls.get("nominations"));
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -65,7 +76,10 @@ function App() {
           <h1 className="title">THE SHOPPIES</h1>
           <Row>
             <Card className="search-card">
-              <Form style={{ marginTop: "3%", marginLeft: "5%" }}>
+              <Form
+                onSubmit={updateSearch}
+                style={{ marginTop: "3%", marginLeft: "5%" }}
+              >
                 <h3 className="search-title">Search</h3>
                 <Row>
                   <Col style={{ paddingLeft: "0px" }} md={10} sm={11}>
@@ -79,7 +93,7 @@ function App() {
                     />
                   </Col>
                   <Col style={{ paddingLeft: "0px" }}>
-                    <Button onClick={updateSearch} className="search-button">
+                    <Button type="submit" className="search-button">
                       Search
                     </Button>
                   </Col>
