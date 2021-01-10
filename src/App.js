@@ -8,11 +8,13 @@ import ResultMovie from "./resultMovie";
 import NominationMovie from "./nominationMovie";
 
 import "./App.css";
+
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState({ error: null, data: null });
   const [nominations, setNominations] = useState([]);
 
+  //function runs on form submit and sends request to omdb api
   const updateSearch = (event) => {
     event.preventDefault();
     fetch(
@@ -28,12 +30,17 @@ function App() {
       });
   };
 
+  //function given the id of the of movie moves it to the nominations list and makes the button on the result list disabled
+  //function also updates the local storage
   const moveToNomination = (id) => {
     const newNomination = results.data.find((movie) => movie.imdbID === id);
-    setNominations(nominations.concat(newNomination));
-    ls.set("nominations", nominations.concat(newNomination));
+    const tempNominations = nominations.concat(newNomination);
+    setNominations(tempNominations);
+    ls.set("nominations", tempNominations);
   };
 
+  //function given the id of the movie removes the movie from the nominations list and makes the button accesible on result list
+  //function also updates the local storage
   const moveToResults = (id) => {
     const updatedNominations = nominations.filter((movie) => {
       return movie.imdbID !== id;
@@ -42,13 +49,16 @@ function App() {
     ls.set("nominations", updatedNominations);
   };
 
+  //function checks to see if button should be disabled or not on result list
+  //maps through to see if the movie exists on the nomination list
   const isDisabled = (id) => {
     const movie = nominations.find((nomination) => nomination.imdbID === id);
     return movie ? true : false;
   };
 
+  //useEffect runs on page load to load in nominations stored in local storage
   useEffect(() => {
-    if (ls.get("nominations") !== [] && ls.get("nominations") !== null) {
+    if (ls.get("nominations") && ls.get("nominations").length) {
       setNominations(ls.get("nominations"));
     }
   }, []);
@@ -113,32 +123,34 @@ function App() {
                     Results for "{searchTerm}"
                   </h3>
                 </Row>
-                <Row>
-                  {!results.error && !results.data ? (
-                    <></>
-                  ) : results.error ? (
-                    <div style={{ width: "90%", margin: "auto" }}>
-                      <Row style={{ margin: "auto" }}>
-                        <Col>
-                          <p style={{ textAlign: "left", color: "#f82929" }}>
-                            {results.error}
-                          </p>
-                        </Col>
-                      </Row>
-                    </div>
-                  ) : (
-                    results.data.map((movie) => {
-                      return (
-                        <ResultMovie
-                          key={movie.imdbID}
-                          movie={movie}
-                          moveToNomination={moveToNomination}
-                          disabled={isDisabled}
-                        />
-                      );
-                    })
-                  )}
-                </Row>
+
+                {(results.error || results.data) && (
+                  <Row>
+                    {results.error ? (
+                      <div style={{ width: "90%", margin: "auto" }}>
+                        <Row style={{ margin: "auto" }}>
+                          {" "}
+                          <Col>
+                            <p style={{ textAlign: "left", color: "#f82929" }}>
+                              {results.error}
+                            </p>
+                          </Col>
+                        </Row>
+                      </div>
+                    ) : (
+                      results.data.map((movie) => {
+                        return (
+                          <ResultMovie
+                            key={movie.imdbID}
+                            movie={movie}
+                            moveToNomination={moveToNomination}
+                            disabled={isDisabled}
+                          />
+                        );
+                      })
+                    )}
+                  </Row>
+                )}
               </Card>
             </Col>
             <Col
@@ -152,7 +164,7 @@ function App() {
                 </Row>
                 <Row>
                   {!nominations ? (
-                    <h1>hi</h1>
+                    <></>
                   ) : (
                     nominations.map((movie) => {
                       return (
